@@ -4,6 +4,8 @@
 
 # MH Desk Pets
 
+[English](README.md) · [繁體中文](README.zh-TW.md) · [日本語](README.ja.md)
+
 Monster Hunter desktop companions for Claude Code and Codex on macOS, built with Swift and AppKit.
 Each pet follows a CLI session and animates when it is working, waiting for input, or idle.
 
@@ -56,9 +58,10 @@ The app icon source and GitHub preview are versioned too; see [Branding](docs/br
 
 ## Development
 
-Write code comments and documentation in English. Keep user-facing text localized in English,
+Write code comments and technical documentation in English. Keep user-facing text localized in English,
 Traditional Chinese, and Japanese. Write new commit messages in English using Gitmoji + Conventional
 Commits, for example `✨ feat: Add a monster companion`.
+Keep the English, Traditional Chinese, and Japanese README files in sync when changing setup or behavior.
 
 Run `make test` and `make app` for code changes, and `make catalog` when changing character metadata.
 
