@@ -25,14 +25,16 @@ The roster and in-app character lists default to numeric EM ID order.
 Requires an Apple Silicon Mac, macOS 14+, Swift 6 (Command Line Tools), and FFmpeg.
 
 ```sh
-git clone https://github.com/chesterXalan/mh-desk-pets.git
+git clone --recurse-submodules https://github.com/chesterXalan/mh-desk-pets.git
 cd mh-desk-pets
 brew install ffmpeg
 make app
 ```
 
 Copy `build/DeskPets.app` to `/Applications` and open it.
-`make run` builds and opens the app; `make test` runs the tests.
+`make run` builds and opens the app; `make test` runs the app tests.
+Session detection and hooks come from the pinned [Agent Session Bridge](https://github.com/chesterXalan/agent-session-bridge)
+submodule; `make -C vendor/agent-session-bridge test` runs its tests. Builds initialize a missing submodule automatically.
 
 ## Use
 
@@ -63,8 +65,12 @@ Run `make test` and `make app` for code changes, and `make catalog` when changin
 ## Local data
 
 Settings, bindings, and imported characters live in `~/Library/Application Support/DeskPets/`.
-Hook installation updates `~/.claude/settings.json` and `~/.codex/hooks.json`, preserving existing hooks
-and backing up each file before changes. The app does not make network requests.
+The shared hook executable and session records live in `~/Library/Application Support/AgentSessionBridge/`,
+independent of the app bundle. Agent Town can use the same bridge without either app depending on the other.
+Installing hooks updates `~/.claude/settings.json` and `~/.codex/hooks.json`, replacing legacy DeskPets entries,
+preserving unrelated hooks, and backing up each changed file. Restart CLI sessions after installation.
+Removing shared hooks affects all consumers; deleting this app leaves the bridge installed.
+Existing `DeskPets/sessions/` records remain readable during migration. The app does not make network requests.
 
 ## Credits
 

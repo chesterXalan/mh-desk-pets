@@ -51,7 +51,7 @@
 "action.cancel" = "Cancel";
 "action.add" = "Add";
 "hooks.help" = "Hooks tell Desk Pets whether a session is working, waiting for you, or idle. Without them every pet shows “unknown”.";
-"hooks.backupHelp" = "Your existing hooks are kept. The file is backed up as *.deskpets-<time>.bak before every change. Sessions pick up new hooks after a restart.";
+"hooks.backupHelp" = "Shared hooks also serve Agent Town. Removing them affects all consumers. Existing hooks are preserved, with *.agent-session-bridge-<time>.bak backups. Restart CLI sessions after installation.";
 "hooks.install" = "Install Hooks";
 "hooks.remove" = "Remove Hooks";
 "hooks.installed" = "Installed";

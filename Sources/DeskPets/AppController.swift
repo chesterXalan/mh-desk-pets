@@ -22,6 +22,7 @@ final class AppController: ObservableObject {
     private var pets: [UUID: PetWindowController] = [:]
     private var scanTimer: Timer?
     private var watcher: DirectoryWatcher?
+    private var legacyWatcher: DirectoryWatcher?
     private var characterWatcher: DirectoryWatcher?
     private var pendingSave: DispatchWorkItem?
     private let scanQueue = DispatchQueue(label: "deskpets.scan", qos: .utility)
@@ -53,6 +54,7 @@ final class AppController: ObservableObject {
 
     func start() {
         watcher = DirectoryWatcher(url: paths.sessions) { [weak self] in self?.reloadRecords() }
+        legacyWatcher = DirectoryWatcher(url: paths.bridge.legacySessions) { [weak self] in self?.reloadRecords() }
         characterWatcher = DirectoryWatcher(url: paths.characters) { [weak self] in self?.reloadCharacters() }
         reloadRecords()
         scan()
@@ -88,7 +90,7 @@ final class AppController: ObservableObject {
     }
 
     private func reloadRecords() {
-        records = HookEvents.readAll(from: paths.sessions)
+        records = paths.bridge.readRecords()
         refresh()
     }
 
@@ -471,11 +473,13 @@ final class AppController: ObservableObject {
     // MARK: - Hooks
 
     var hookExecutable: String {
-        Bundle.main.executableURL!.deletingLastPathComponent().appendingPathComponent("deskpets-hook").path
+        paths.bridge.executable.path
     }
 
     func installHooks() throws -> [HookInstaller.Change] {
         defer { refreshHookStatus() }
+        let bundled = Bundle.main.executableURL!.deletingLastPathComponent().appendingPathComponent("agent-session-bridge")
+        try BridgeRuntime.deploy(from: bundled, paths: paths.bridge)
         return try HookInstaller(paths: paths, hookExecutable: hookExecutable).install()
     }
 

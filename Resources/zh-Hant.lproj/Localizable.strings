@@ -51,7 +51,7 @@
 "action.cancel" = "取消";
 "action.add" = "新增";
 "hooks.help" = "Hooks 讓寵物知道工作階段是工作中、等你回覆或閒置；未安裝時會顯示「未知」。";
-"hooks.backupHelp" = "會保留原有 hooks，每次修改前備份成 *.deskpets-<時間>.bak；請重開 CLI 工作階段以載入新 hooks。";
+"hooks.backupHelp" = "共用 hooks 也供 Agent Town 使用，移除後會影響所有使用它的程式。會保留其他 hooks，並備份成 *.agent-session-bridge-<時間>.bak；安裝後請重開 CLI 工作階段。";
 "hooks.install" = "安裝 hooks";
 "hooks.remove" = "移除 hooks";
 "hooks.installed" = "已安裝";

@@ -10,6 +10,7 @@ app:
 	./scripts/build-app.sh
 
 test:
+	./scripts/ensure-bridge.sh
 	swift test $(TEST_FLAGS)
 
 sprites:

@@ -51,7 +51,7 @@
 "action.cancel" = "キャンセル";
 "action.add" = "追加";
 "hooks.help" = "フックでセッションの作業中・入力待ち・待機中を判別します。未設定の場合は「不明」と表示されます。";
-"hooks.backupHelp" = "既存のフックは保持され、変更前に *.deskpets-<時刻>.bak にバックアップされます。反映には CLI セッションの再起動が必要です。";
+"hooks.backupHelp" = "共有フックは Agent Town でも使用します。削除するとすべての利用アプリに影響します。他のフックは保持し、*.agent-session-bridge-<時刻>.bak にバックアップします。設定後は CLI セッションを再起動してください。";
 "hooks.install" = "フックを設定";
 "hooks.remove" = "フックを解除";
 "hooks.installed" = "設定済み";

@@ -1,0 +1,3 @@
+[submodule "vendor/agent-session-bridge"]
+	path = vendor/agent-session-bridge
+	url = https://github.com/chesterXalan/agent-session-bridge.git
